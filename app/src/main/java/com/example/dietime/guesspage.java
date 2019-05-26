@@ -2,6 +2,7 @@ package com.example.dietime;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -20,8 +21,11 @@ import android.widget.Toast;
 
 public class guesspage extends MainActivity {
 
+
    static int won,lost;
     int x,origage,age;
+    int pi,o;
+
 
     TextView h;
     TextView g;
@@ -146,11 +150,15 @@ public class guesspage extends MainActivity {
                 }
         );
 
+
         histy.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+
                         if (age == origage) {
+
                             won++;
                         }
                         if (x == 0 && age != origage) {
@@ -159,9 +167,13 @@ public class guesspage extends MainActivity {
                         wins.setText("Correct Guesses : " + won);
                         loss.setText("Failed Guesses  : " + lost);
                         histy.setEnabled(false);
+                        savedata();
                     }
                 }
         );
+        loaddata();
+        update();
+
 
     }
     @Override
@@ -226,6 +238,23 @@ public class guesspage extends MainActivity {
 
         return "";
     }
+    public void savedata(){
+        SharedPreferences prefs = this.getSharedPreferences("com.example.dietime", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=prefs.edit();
+        editor.putInt("ha",won);
+        editor.putInt("hi",lost);
+        editor.commit();
+    }
+    public void loaddata(){
+        SharedPreferences p = this.getSharedPreferences("com.example.dietime", Context.MODE_PRIVATE);
+        pi=p.getInt("ha",0);
+        o=p.getInt("hi",0);
 
+    }
+    public void update(){
+        won=pi;
+        lost=o;
+
+    }
 
 }
