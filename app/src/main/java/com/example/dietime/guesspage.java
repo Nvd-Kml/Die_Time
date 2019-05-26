@@ -10,6 +10,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,8 +33,9 @@ public class guesspage extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_guesspage);
-        
+
         Bundle extras=getIntent().getExtras();
         x=extras.getInt("tryi");
         origage=extras.getInt("agei");
@@ -169,6 +171,8 @@ public class guesspage extends MainActivity {
         String hist=savedInstanceState.getString("hist");
         int trie=savedInstanceState.getInt("try");
         int color=savedInstanceState.getInt("color");
+        int agei=savedInstanceState.getInt("age");
+        age=agei;
         l.setBackgroundColor(color);
         x=trie;
         h.setText(hist);
@@ -183,6 +187,8 @@ public class guesspage extends MainActivity {
         String hist=h.getText().toString();
         int color=((ColorDrawable)l.getBackground()).getColor();
         int trie=x;
+        int p=age;
+        outstate.putInt("age",p);
         outstate.putInt("color",color);
         outstate.putInt("try",trie);
         outstate.putString("hist",hist);

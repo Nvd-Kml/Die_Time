@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -104,6 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
         android:background="#000000"
         android:text="NEXT"
         android:textColor="#ffffff"
@@ -112,3 +118,4 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 </LinearLayout>
+</ScrollView>
